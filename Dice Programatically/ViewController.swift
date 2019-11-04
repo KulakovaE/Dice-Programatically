@@ -9,18 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    //imageView.animationImages = [UIImage(named: "\(0)")!]
-    //    for i in 1..<26 {
-    //        imageView.animationImages?.append(UIImage(named: "\(i)")!)
-    //    }
+   
     let arrayImage = [#imageLiteral(resourceName: "Dice1"), #imageLiteral(resourceName: "Dice2"), #imageLiteral(resourceName: "Dice3"), #imageLiteral(resourceName: "Dice4"), #imageLiteral(resourceName: "Dice5"), #imageLiteral(resourceName: "Dice6")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        
     }
     
     lazy var backgroundImageView: UIImageView = {
@@ -73,9 +68,6 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(diceTwoImageView)
         diceTwoImageView.image = UIImage(named: "Dice2")
         stackView.addArrangedSubview(button)
-        
-        
-        
     }
     
     func setupConstraints() {
@@ -92,8 +84,6 @@ class ViewController: UIViewController {
         backgroundImageView.bottomAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor, constant: 20).isActive = true
         stackView.centerXAnchor.constraint(equalTo: backgroundImageView.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
-        
-        
     }
     
     @objc func buttonAction(sender: UIButton!) {
