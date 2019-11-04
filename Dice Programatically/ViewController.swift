@@ -9,14 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //imageView.animationImages = [UIImage(named: "\(0)")!]
+    //    for i in 1..<26 {
+    //        imageView.animationImages?.append(UIImage(named: "\(i)")!)
+    //    }
+    let arrayImage = [#imageLiteral(resourceName: "Dice1"), #imageLiteral(resourceName: "Dice2"), #imageLiteral(resourceName: "Dice3"), #imageLiteral(resourceName: "Dice4"), #imageLiteral(resourceName: "Dice5"), #imageLiteral(resourceName: "Dice6")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
         
     }
-
+    
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +34,6 @@ class ViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.alpha = 1
         return imageView
     }()
     
@@ -36,14 +41,12 @@ class ViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.alpha = 1
         return imageView
     }()
     
     private let button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.alpha = 1
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         button.setTitle("Start", for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
@@ -64,15 +67,15 @@ class ViewController: UIViewController {
         view.addSubview(backgroundImageView)
         backgroundImageView.image = UIImage(named: "background")
         
-        backgroundImageView.addSubview(stackView)
+        view.addSubview(stackView)
         stackView.addArrangedSubview(diceOneImageView)
         diceOneImageView.image = UIImage(named: "Dice1")
         stackView.addArrangedSubview(diceTwoImageView)
         diceTwoImageView.image = UIImage(named: "Dice2")
         stackView.addArrangedSubview(button)
         
-       
-
+        
+        
     }
     
     func setupConstraints() {
@@ -92,10 +95,10 @@ class ViewController: UIViewController {
         
         
     }
-
-    @objc func buttonAction(sender: UIButton!) {
-             print("Button Clicked")
-        }
     
+    @objc func buttonAction(sender: UIButton!) {
+        diceOneImageView.image = arrayImage[Int.random(in: 0...5)]
+        diceTwoImageView.image = arrayImage[Int.random(in: 0...5)]
+    }
 }
 
