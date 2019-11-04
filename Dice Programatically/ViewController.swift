@@ -14,6 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        
     }
 
     lazy var backgroundImageView: UIImageView = {
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.alpha = 1
         return imageView
     }()
     
@@ -34,12 +36,17 @@ class ViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.alpha = 1
         return imageView
     }()
     
     private let button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.alpha = 1
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.setTitle("Start", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 24)
         return button
     }()
     
@@ -48,7 +55,7 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 8
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -63,8 +70,7 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(diceTwoImageView)
         diceTwoImageView.image = UIImage(named: "Dice2")
         stackView.addArrangedSubview(button)
-        button.setTitle("Start", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 24)
+        
        
 
     }
@@ -77,31 +83,19 @@ class ViewController: UIViewController {
         backgroundImageView.trailingAnchor.constraint(equalTo: layoutGide.trailingAnchor).isActive = true
         backgroundImageView.bottomAnchor.constraint(equalTo: layoutGide.bottomAnchor).isActive = true
         
-        stackView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor,constant: 128).isActive = true
-        stackView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 128).isActive = true
-        backgroundImageView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 128).isActive = true
-        backgroundImageView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 128).isActive = true
+        stackView.leadingAnchor.constraint(greaterThanOrEqualTo: backgroundImageView.leadingAnchor, constant: 20).isActive = true
+        stackView.topAnchor.constraint(greaterThanOrEqualTo: backgroundImageView.topAnchor, constant: 20).isActive = true
+        backgroundImageView.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: 20).isActive = true
+        backgroundImageView.bottomAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor, constant: 20).isActive = true
         stackView.centerXAnchor.constraint(equalTo: backgroundImageView.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
         
-//        diceOneImageView.heightAnchor.constraint(equalToConstant: view.frame.height/5).isActive = true
-//        diceTwoImageView.heightAnchor.constraint(equalToConstant: view.frame.height/5).isActive = true
-//        diceOneImageView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8).isActive = true
-//        diceOneImageView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 8).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: diceOneImageView.trailingAnchor, constant: 8).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: diceOneImageView.bottomAnchor, constant: 8).isActive = true
-//
-//        diceTwoImageView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8).isActive = true
-//        diceTwoImageView.topAnchor.constraint(equalTo: diceOneImageView.topAnchor, constant: 8).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: diceTwoImageView.trailingAnchor, constant: 8).isActive = true
-//        button.bottomAnchor.constraint(equalTo: diceTwoImageView.bottomAnchor, constant: 8).isActive = true
-//
-//        button.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8).isActive = true
-////        button.topAnchor.constraint(equalTo: diceTwoImageView.topAnchor, constant: 8).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: 8).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 8).isActive = true
-//
+        
     }
 
+    @objc func buttonAction(sender: UIButton!) {
+             print("Button Clicked")
+        }
+    
 }
 
